@@ -1,3 +1,5 @@
+/*globals module */
+
 module.exports = function (grunt) {
 	'use strict';
 
@@ -47,7 +49,7 @@ module.exports = function (grunt) {
 					collapseWhitespace: true
 				},
 				files: {
-					'<%= pkg.dest.html %>/index.html': '<%= pkg.src.html %>/index.hmtl'
+					'<%= pkg.dest.html %>/index.html': '<%= pkg.src.html %>/index.html'
 				}
 			}
 		},
