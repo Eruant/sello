@@ -8,4 +8,4 @@ var express = require('express'),
 
 server.listen(port);
 
-app.use("/bin", express.static(__dirname + '/public'));
+app.use("/", express.static(__dirname + '/public/bin'));
