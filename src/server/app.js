@@ -47,6 +47,7 @@ function serverHandler(req, res) {
 http.createServer(serverHandler).listen(port);
 io.listen(http);
 
+/*
 io.sockets.on('connection', function (socket) {
 	'use strict';
 	
@@ -54,5 +55,6 @@ io.sockets.on('connection', function (socket) {
 		io.sockets.emit('new', data);
 	});
 });
+*/
 
 console.log("Static file server running at \n => http://localhost:" + port + "\nCTRL + C to shutdown");
