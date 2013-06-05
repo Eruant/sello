@@ -70,7 +70,10 @@ module.exports = function (grunt) {
 		},
 		watch: {
 			scripts: {
-				files: '<%= pkg.src.js %>/*.js',
+				files: [
+					'<%= pkg.src.js %>/*.js',
+					'<%= pkg.src.server %>/*.js'
+				],
 				tasks: ['uglify', 'jshint', 'uglify', 'jsduck']
 			},
 			styles: {

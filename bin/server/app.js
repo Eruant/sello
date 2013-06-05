@@ -1,2 +1,2 @@
 /*! sello 05/06/2013 */
-var express=require("express"),app=express(),server=require("http").createServer(app),port=process.env.PORT||8888;server.listen(port),app.use("/",express.static(__dirname+"/bin"));
+var express=require("express"),app=express(),server=require("http").createServer(app),port=process.env.PORT||8888;server.listen(port),app.use("/bin",express.static(__dirname+"/public"));
