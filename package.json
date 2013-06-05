@@ -27,7 +27,7 @@
     "js": "bin/js",
     "css": "bin/css",
     "img": "bin/img",
-    "html": "bin/html",
+    "html": "bin",
     "docs": "docs",
     "server": "bin/server"
   },
