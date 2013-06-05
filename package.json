@@ -1,39 +1,42 @@
 {
-	"name": "sello",
-	"version": "0.0.1",
-	"author": "Matt Gale <matt@littleball.co.uk>",
-	"description": "Avatar display services",
-	"devDependencies": {
-		"grunt": "0.4.x",
-		"grunt-contrib-watch": "0.4.x",
-		"grunt-contrib-jshint": "0.5.x",
-		"grunt-contrib-uglify": "0.2.x",
-		"grunt-contrib-sass": "0.3.x",
-		"grunt-contrib-htmlmin": "0.1.x",
-		"grunt-smushit": "0.4.x",
-		"grunt-jsduck": "0.1.x"
-	},
-	"src": {
-		"js": "src/js",
-		"css": "src/css",
-		"img": "src/img",
-		"html": "src/html",
-		"server": "src/server"
-	},
-	"dest": {
-		"js": "bin/js",
-		"css": "bin/css",
-		"img": "bin/img",
-		"html": "bin/html",
-		"docs": "docs",
-		"server": "bin/server"
-	},
-	"engines": {
-		"node": "0.10.x",
-		"npm": "1.2.x"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Eruant/sello"
-	}
+  "name": "sello",
+  "version": "0.0.1",
+  "author": "Matt Gale <matt@littleball.co.uk>",
+  "description": "Avatar display services",
+  "dependencies": {
+    "express": "3.2.6"
+  },
+  "devDependencies": {
+    "grunt": "0.4.x",
+    "grunt-contrib-watch": "0.4.x",
+    "grunt-contrib-jshint": "0.5.x",
+    "grunt-contrib-uglify": "0.2.x",
+    "grunt-contrib-sass": "0.3.x",
+    "grunt-contrib-htmlmin": "0.1.x",
+    "grunt-smushit": "0.4.x",
+    "grunt-jsduck": "0.1.x"
+  },
+  "src": {
+    "js": "src/js",
+    "css": "src/css",
+    "img": "src/img",
+    "html": "src/html",
+    "server": "src/server"
+  },
+  "dest": {
+    "js": "bin/js",
+    "css": "bin/css",
+    "img": "bin/img",
+    "html": "bin/html",
+    "docs": "docs",
+    "server": "bin/server"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Eruant/sello"
+  }
 }

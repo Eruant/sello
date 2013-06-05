@@ -1,5 +1,3 @@
-/*globals module*/
-
 module.exports = function (grunt) {
 	'use strict';
 
@@ -21,11 +19,15 @@ module.exports = function (grunt) {
 					except: ['jQuery']
 				}
 			},
-			build: {
+			client: {
 				src: [
 					'<%= pkg.src.js %>/*.js'
 				],
 				dest: '<%= pkg.dest.js %>/<%= pkg.name %>.min.js'
+			},
+			server: {
+				src: '<%= pkg.src.server %>/app.js',
+				dest: '<%= pkg.dest.server %>/app.js'
 			}
 		},
 		sass: {
