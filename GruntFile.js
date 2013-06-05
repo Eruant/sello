@@ -23,6 +23,7 @@ module.exports = function (grunt) {
 			},
 			client: {
 				src: [
+					'<%= pkg.src.js %>/lib/*.js',
 					'<%= pkg.src.js %>/*.js'
 				],
 				dest: '<%= pkg.dest.js %>/<%= pkg.name %>.min.js'
@@ -71,7 +72,7 @@ module.exports = function (grunt) {
 		watch: {
 			scripts: {
 				files: [
-					'<%= pkg.src.js %>/*.js',
+					'<%= pkg.src.js %>/**/*.js',
 					'<%= pkg.src.server %>/*.js'
 				],
 				tasks: ['uglify', 'jshint', 'uglify', 'jsduck']
