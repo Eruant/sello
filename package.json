@@ -4,7 +4,6 @@
   "author": "Matt Gale <matt@littleball.co.uk>",
   "description": "Avatar display services",
   "dependencies": {
-    "express": "3.2.6"
   },
   "devDependencies": {
     "grunt": "0.4.x",
