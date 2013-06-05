@@ -4,6 +4,7 @@
   "author": "Matt Gale <matt@littleball.co.uk>",
   "description": "Avatar display services",
   "dependencies": {
+    "socket.io": "0.9.14"
   },
   "devDependencies": {
     "grunt": "0.4.x",
