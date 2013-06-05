@@ -7,7 +7,7 @@ var http = require('http'),
 	port = process.env.PORT || 5000,
 	io = require('socket.io');
 
-http.createServer(function (req, res) {
+function serverHandler(req, res) {
 	'use strict';
 
 	var uri = 'bin/' + url.parse(req.url).pathname,
@@ -42,8 +42,9 @@ http.createServer(function (req, res) {
 			res.end();
 		});
 	});
-}).listen(parseInt(port, 10));
+}
 
+http.createServer(serverHandler).listen(port);
 io.listen(http);
 
 io.sockets.on('connection', function (socket) {
