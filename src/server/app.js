@@ -40,28 +40,28 @@ function staticServer(req, res) {
 
 		fs.readFile(filename, 'binary', function (err, file) {
 			if (err) {
-				var ext = getExtension(filename);
-				switch (ext) {
-				case 'txt':
-					res.writeHead(500, { "Content-Type": "text/plain"});
-					break;
-				case 'html':
-				case 'htm':
-					res.writeHead(500, { "Content-Type": "text/html"});
-					break;
-				case 'js':
-					res.writeHead(500, { "Content-Type": "text/javascript"});
-					break;
-				case 'css':
-					res.writeHead(500, { "Content-Type": "text/css"});
-					break;
-				}
+				res.writeHead(500, { "Content-Type": "text/plain"});
 				res.write(err + "\n");
 				res.end();
 				return;
 			}
 
-			res.writeHead(200);
+			var ext = getExtension(filename);
+			switch (ext) {
+			case 'txt':
+				res.writeHead(200, { "Content-Type": "text/plain"});
+				break;
+			case 'html':
+			case 'htm':
+				res.writeHead(200, { "Content-Type": "text/html"});
+				break;
+			case 'js':
+				res.writeHead(200, { "Content-Type": "text/javascript"});
+				break;
+			case 'css':
+				res.writeHead(200, { "Content-Type": "text/css"});
+				break;
+			}
 			res.write(file, "binary");
 			res.end();
 		});
