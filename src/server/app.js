@@ -52,6 +52,8 @@ function socketServer() {
 	console.log('<<< starting socket server >>>');
 	
 	io.configure(function () {
+		io.set("transports", ["xhr-polling"]);
+		io.set("polling duration", 10);
 	});
 	
 	io.sockets.on('connection', function (socket) {
@@ -61,3 +63,5 @@ function socketServer() {
 
 app.listen(port);
 console.log('<<< listening on port:' + port + ' >>>');
+
+socketServer();
