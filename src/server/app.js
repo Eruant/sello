@@ -1,13 +1,16 @@
 /*globals require, process, console */
 
-var http = require('http'),
+var app = require('http').createServer(staticServer),
 	url = require('url'),
 	path = require('path'),
 	fs = require('fs'),
-	port = process.env.PORT || 5000;
+	port = process.env.PORT || 5000,
+	io = require('socket.io').listen(app);
 
-http.createServer(function (req, res) {
+function staticServer(req, res) {
 	'use strict';
+	
+	console.log('<<< starting static server >>>');
 
 	var uri = 'bin/' + url.parse(req.url).pathname,
 		filename = path.join(process.cwd(), uri);
@@ -41,6 +44,20 @@ http.createServer(function (req, res) {
 			res.end();
 		});
 	});
-}).listen(port);
+}
 
-console.log("Static file server running at \n => http://localhost:" + port + "\nCTRL + C to shutdown");
+function socketServer() {
+	'use strict';
+	
+	console.log('<<< starting socket server >>>');
+	
+	io.configure(function () {
+	});
+	
+	io.sockets.on('connection', function (socket) {
+		console.log('<<< connection made >>>');
+	});
+}
+
+app.listen(port);
+console.log('<<< listening on port:' + port + ' >>>');
