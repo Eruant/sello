@@ -4,9 +4,7 @@ var http = require('http'),
 	url = require('url'),
 	path = require('path'),
 	fs = require('fs'),
-	port = process.env.PORT || 5000,
-	io = require('socket.io'),
-	socket;
+	port = process.env.PORT || 5000;
 
 http.createServer(function (req, res) {
 	'use strict';
@@ -44,19 +42,5 @@ http.createServer(function (req, res) {
 		});
 	});
 }).listen(port);
-
-io.configure(function () {
-	io.set("transports", ["xhr-polling"]);
-	io.set("polling duration", 10);
-});
-socket = new io.Socket();
-
-socket.on('connection', function (socket) {
-	'use strict';
-
-	socket.on('msg', function (data) {
-		io.sockets.emit('new', data);
-	});
-});
 
 console.log("Static file server running at \n => http://localhost:" + port + "\nCTRL + C to shutdown");

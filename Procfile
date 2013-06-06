@@ -1,1 +1,1 @@
-web: node bin/server/app.js
+web: node src/server/sockets.js
