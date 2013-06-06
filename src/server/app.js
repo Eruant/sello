@@ -1,4 +1,8 @@
 /*globals require, process, console */
+/**
+ * Sello Server
+ * @author Matt Gale
+ **/
 
 var app = require('http').createServer(staticServer),
 	url = require('url'),
@@ -9,7 +13,7 @@ var app = require('http').createServer(staticServer),
 
 function staticServer(req, res) {
 	'use strict';
-	
+
 	console.log('<<< starting static server >>>');
 
 	var uri = 'bin/' + url.parse(req.url).pathname,
@@ -48,16 +52,20 @@ function staticServer(req, res) {
 
 function socketServer() {
 	'use strict';
-	
+
 	console.log('<<< starting socket server >>>');
-	
+
 	io.configure(function () {
 		io.set("transports", ["xhr-polling"]);
 		io.set("polling duration", 10);
 	});
-	
+
 	io.sockets.on('connection', function (socket) {
 		console.log('<<< connection made >>>');
+		socket.emit('news', { hello: 'world' });
+		socket.on('msg', function (data) {
+			console.log(data);
+		});
 	});
 }
 
