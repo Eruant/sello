@@ -49,19 +49,20 @@ function staticServer(req, res) {
 			var ext = getExtension(filename);
 			switch (ext) {
 			case 'txt':
-				res.writeHead(200, { "Content-Type": "text/plain"});
+				res.setHeader("Content-Type", "text/plain");
 				break;
 			case 'html':
 			case 'htm':
-				res.writeHead(200, { "Content-Type": "text/html"});
+				res.setHeader("Content-Type", "text/html");
 				break;
 			case 'js':
-				res.writeHead(200, { "Content-Type": "text/javascript"});
+				res.setHeader("Content-Type", "text/javascript");
 				break;
 			case 'css':
-				res.writeHead(200, { "Content-Type": "text/css"});
+				res.setHeader("Content-Type", "text/css");
 				break;
 			}
+			res.writeHead(200);
 			res.write(file, "binary");
 			res.end();
 		});
@@ -80,6 +81,7 @@ function socketServer() {
 
 	io.sockets.on('connection', function (socket) {
 		console.log('<<< connection made >>>');
+		console.log('Host ' + socket.handshake.headers.host);
 		socket.emit('news', { hello: 'world' });
 		socket.on('msg', function (data) {
 			console.log(data);
