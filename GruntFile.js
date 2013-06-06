@@ -36,7 +36,7 @@ module.exports = function (grunt) {
 		sass: {
 			build: {
 				files: {
-					'<% = pkg.dest.css %>/<%= pkg.name %>.min.css': [
+					'<%= pkg.dest.css %>/<%= pkg.name %>.min.css': [
 						'<%= pkg.src.css %>/*.css',
 						'<%= pkg.src.css %>/*.scss'
 					]
@@ -75,7 +75,7 @@ module.exports = function (grunt) {
 					'<%= pkg.src.js %>/**/*.js',
 					'<%= pkg.src.server %>/*.js'
 				],
-				tasks: ['uglify', 'jshint', 'uglify', 'jsduck']
+				tasks: ['jshint', 'uglify', 'jsduck']
 			},
 			styles: {
 				files: [
@@ -104,5 +104,6 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-jsduck');
 
 	grunt.registerTask('default', ['watch']);
+	grunt.registerTask('all', ['jshint', 'uglify', 'jsduck', 'sass', 'htmlmin', 'smushit']);
 
 };
