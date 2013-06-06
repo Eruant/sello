@@ -44,17 +44,21 @@ function serverHandler(req, res) {
 	});
 }
 
-http.createServer(serverHandler).listen(port);
-//io.listen(http);
+// assuming io is the Socket.IO server object
+io.configure(function () {
+	io.set("transports", ["xhr-polling"]);
+	io.set("polling duration", 10);
+});
 
-/*
+http.createServer(serverHandler).listen(port);
+io.listen(http);
+
 io.sockets.on('connection', function (socket) {
 	'use strict';
-	
+
 	socket.on('msg', function (data) {
 		io.sockets.emit('new', data);
 	});
 });
-*/
 
 console.log("Static file server running at \n => http://localhost:" + port + "\nCTRL + C to shutdown");
