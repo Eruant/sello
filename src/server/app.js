@@ -11,6 +11,11 @@ var app = require('http').createServer(staticServer),
 	port = process.env.PORT || 5000,
 	io = require('socket.io').listen(app);
 
+function getExtension(filename) {
+	var i = filename.lastIndexOf('.');
+	return (i < 0) ? '' : filename.substr(i);
+}
+
 function staticServer(req, res) {
 	'use strict';
 
@@ -35,9 +40,22 @@ function staticServer(req, res) {
 
 		fs.readFile(filename, 'binary', function (err, file) {
 			if (err) {
-				res.writeHead(500, {
-					"Content-Type": "text/plain"
-				});
+				var ext = getExtension(filename);
+				switch (ext) {
+				case 'txt':
+					res.writeHead(500, { "Content-Type": "text/plain"});
+					break;
+				case 'html':
+				case 'htm':
+					res.writeHead(500, { "Content-Type": "text/html"});
+					break;
+				case 'js':
+					res.writeHead(500, { "Content-Type": "text/javascript"});
+					break;
+				case 'css':
+					res.writeHead(500, { "Content-Type": "text/css"});
+					break;
+				}
 				res.write(err + "\n");
 				res.end();
 				return;
