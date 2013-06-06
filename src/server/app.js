@@ -5,9 +5,10 @@ var http = require('http'),
 	path = require('path'),
 	fs = require('fs'),
 	port = process.env.PORT || 5000,
-	io = require('socket.io');
+	io = require('socket.io'),
+	socket;
 
-function serverHandler(req, res) {
+http.createServer(function (req, res) {
 	'use strict';
 
 	var uri = 'bin/' + url.parse(req.url).pathname,
@@ -42,18 +43,15 @@ function serverHandler(req, res) {
 			res.end();
 		});
 	});
-}
+}).listen(port);
 
-// assuming io is the Socket.IO server object
 io.configure(function () {
 	io.set("transports", ["xhr-polling"]);
 	io.set("polling duration", 10);
 });
+socket = new io.Socket();
 
-http.createServer(serverHandler).listen(port);
-io.listen(http);
-
-io.sockets.on('connection', function (socket) {
+socket.on('connection', function (socket) {
 	'use strict';
 
 	socket.on('msg', function (data) {
