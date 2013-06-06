@@ -45,7 +45,7 @@ function serverHandler(req, res) {
 }
 
 http.createServer(serverHandler).listen(port);
-io.listen(http);
+//io.listen(http);
 
 /*
 io.sockets.on('connection', function (socket) {
