@@ -15,29 +15,18 @@
   </script>
 </head>
 <body onload="prettyPrint(); highlight();">
-  <pre class="prettyprint lang-js">/*globals window, jQuery, io */
+  <pre class="prettyprint lang-js">/*globals jQuery, io */
 
 (function ($, io) {
 	'use strict';
-	
-	window.Chat = {
-		socket: null,
-		
-		init: function (socketURL) {
-			this.socket = io.connect(socketURL);
-			
-			// send message on button click
-			$('send_test').on('click', function () {
-				window.Chat.sent();
-			});
-			
-			// process any incoming messages
-			this.socket.on('new', this.add);
-		},
-		
-		add: function (data) {
-		}
-	};
-}(jQuery, io));</pre>
+
+	var socket = io.connect('http://sello.herokuapp.com');
+	socket.on('news', function (data) {
+		console.log(data);
+		socket.emit('msg', { hello: 'server' });
+	});
+
+}(jQuery, io));
+</pre>
 </body>
 </html>
