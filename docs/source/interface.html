@@ -24,22 +24,30 @@
 
 	socket.on('msg', function (data) {
 
-		var html = '&lt;h2&gt;Users&lt;/h2&gt;',
+		var html = '&lt;h2&gt;Offices&lt;/h2&gt;',
 			offices = data.offices,
 			offices_len = data.offices.length,
 			users_len,
 			i,
 			j;
-
-		if (len &gt; 0) {
+		
+		for (i = 0; i &lt; offices_len; i++) {
+			
+			html += '&lt;div&gt;';
+			html += '&lt;h3&gt;' + offices[i].name + '&lt;/h3&gt;';
+			
+			users_len = offices[i].users;
+			
 			html += '&lt;ul&gt;';
-		}
-		for (i = 0; i &lt; len; i += 1) {
-			html += '&lt;li&gt;' + users[i].user + ' (' + users[i].office + ')' + '&lt;/li&gt;';
-		}
-		if (len &gt; 0) {
+			for (j = 0; j &lt; users_len; j++) {
+				html += '&lt;li&gt;' + offices[i].users[j] + '&lt;/li&gt;';
+			}
 			html += '&lt;/ul&gt;';
+			
+			html += '&lt;/div&gt;';
+			
 		}
+
 		$('#users').html(html);
 	});
 
