@@ -4,14 +4,16 @@
  * @author Matt Gale
  **/
 
-var app = require('http').createServer(staticServer),
+var app = require('http'),
 	url = require('url'),
 	path = require('path'),
 	fs = require('fs'),
 	port = process.env.PORT || 5000,
-	io = require('socket.io').listen(app);
+	io = require('socket.io');
 
 function getExtension(filename) {
+	'use strict';
+	
 	var i = filename.lastIndexOf('.');
 	return (i < 0) ? '' : filename.substr(i);
 }
@@ -108,6 +110,9 @@ function socketServer() {
 		});
 	});
 }
+
+app.createServer(staticServer);
+io.listen(app);
 
 app.listen(port);
 console.log('<<< listening on port:' + port + ' >>>');
