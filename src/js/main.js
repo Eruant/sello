@@ -4,9 +4,14 @@
 	'use strict';
 
 	var socket = io.connect('http://sello.herokuapp.com');
-	socket.on('news', function (data) {
-		console.log(data);
-		socket.emit('msg', { hello: 'server' });
+
+	socket.on('db', function (db) {
+		console.log(db);
 	});
+
+	$('#send_test').on('click', function () {
+		socket.emit('user', { user: 12345 });
+	});
+
 
 }(jQuery, io));

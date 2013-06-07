@@ -9,7 +9,10 @@ var app = require('http').createServer(staticServer),
 	path = require('path'),
 	fs = require('fs'),
 	port = process.env.PORT || 5000,
-	io = require('socket.io').listen(app);
+	io = require('socket.io').listen(app),
+	db = {
+		users: []
+	};
 
 function getExtension(filename) {
 	var i = filename.lastIndexOf('.');
@@ -82,9 +85,18 @@ function socketServer() {
 	io.sockets.on('connection', function (socket) {
 		console.log('<<< connection made >>>');
 		console.log('Host ' + socket.handshake.headers.host);
-		socket.emit('news', { hello: 'world' });
-		socket.on('msg', function (data) {
-			console.log(data);
+
+		// send the current database
+		socket.emit('db', db);
+
+		// wait for new users
+		socket.on('user', function (data) {
+			if (data.user !== undefined) {
+				db.users.push(data.user);
+				socket.emit('db', db);
+			} else {
+				console.log('Not logged', data);
+			}
 		});
 	});
 }
