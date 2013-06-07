@@ -103,11 +103,21 @@ function socketServer() {
 		socket.on('user', function (data) {
 			if (data.user !== undefined) {
 				
+				var offices = db.offices,
+					len = offices.length,
+					i;
+				
+				for (i = 0; i < len; i += 1) {
+					if (offices[i].name === data.office) {
+						offices[i].users.push(data.user);
+					}
+				}
+				
 				/*var idx = db.users.indexOf(data.user); 
 				if (idx !== -1) {
 					db.users.splice(idx, 1);
 				} else {*/
-					db.offices[data.office].push(data.user);
+					//db.offices[data.office].push(data.user);
 				//}
 
 				// alert all clients that there is a new user
