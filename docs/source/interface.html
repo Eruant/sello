@@ -22,14 +22,14 @@
 
 	var socket = io.connect('http://sello.herokuapp.com');
 
-	socket.on('users', function (data) {
+	socket.on('msg', function (data) {
 
 		var html = '&lt;h2&gt;Users&lt;/h2&gt;',
-			users = data.users,
-			len = data.users.length,
-			i;
-		
-		console.log('Users', users);
+			offices = data.offices,
+			offices_len = data.offices.length,
+			users_len,
+			i,
+			j;
 
 		if (len &gt; 0) {
 			html += '&lt;ul&gt;';

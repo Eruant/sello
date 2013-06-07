@@ -5,22 +5,32 @@
 
 	var socket = io.connect('http://sello.herokuapp.com');
 
-	socket.on('users', function (data) {
+	socket.on('msg', function (data) {
 
 		var html = '<h2>Users</h2>',
-			users = data.users,
-			len = data.users.length,
-			i;
-
-		if (len > 0) {
+			offices = data.offices,
+			offices_len = data.offices.length,
+			users_len,
+			i,
+			j;
+		
+		for (i = 0, i < offices_len; i++) {
+			
+			html += '<div>';
+			html += '<h3>' + offices[i].name + '</h3>';
+			
+			users_len = offices[i].users;
+			
 			html += '<ul>';
-		}
-		for (i = 0; i < len; i++) {
-			html += '<li>' + users[i].user + ' (' + users[i].office + ')' + '</li>';
-		}
-		if (len > 0) {
+			for(j = 0, j < users_len; j++) {
+				html += '<li>' + offices[i].users[j] + '</li>';
+			}
 			html += '</ul>';
+			
+			html += '</div>';
+			
 		}
+
 		$('#users').html(html);
 	});
 

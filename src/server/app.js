@@ -75,7 +75,12 @@ function socketServer() {
 	'use strict';
 
 	var db = {
-		users: []
+		offices: [
+			{ name: "brighton", users: [] },
+			{ name: "london", users: [] },
+			{ name: "new-york", users: [] },
+			{ name: "san-francisco", users: [] }
+		]
 	};
 
 	console.log('<<< starting socket server >>>');
@@ -90,40 +95,24 @@ function socketServer() {
 		console.log('Host ' + socket.handshake.headers.host);
 
 		// send the current database
-		socket.emit('users', {
-			users: db.users
+		socket.emit('msg', {
+			offices: db.offices
 		});
 
 		// wait for new users
 		socket.on('user', function (data) {
 			if (data.user !== undefined) {
-
-				// search the arra for user and add them
-				var result = false,
-					len = db.users.length,
-					idx,
-					i;
 				
-				// loop through the data and see if this user is logged in
-				for (i = 0; i < len; i += 1) {
-					if (db.users[i].user === data.user) {
-						result = i;
-					}
-				}
-				
-				if (result) {
-					// remove user from array
-					console.log('--------------- REMOVING USER!!! ---------------');
-				} else {
-					db.users.push({
-						user: data.user,
-						office: data.office
-					});
-				}
+				/*var idx = db.users.indexOf(data.user); 
+				if (idx !== -1) {
+					db.users.splice(idx, 1);
+				} else {*/
+					db.offices[data.office].push(data.user);
+				//}
 
 				// alert all clients that there is a new user
-				io.sockets.emit('users', {
-					users: db.users
+				io.sockets.emit('msg', {
+					offices: db.offices
 				});
 			}
 		});
