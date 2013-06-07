@@ -14,6 +14,8 @@
 			i,
 			j;
 		
+		console.log(data);
+		
 		for (i = 0; i < offices_len; i++) {
 			
 			html += '<div>';
