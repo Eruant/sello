@@ -21,12 +21,19 @@ module.exports = function (grunt) {
 					except: ['jQuery']
 				}
 			},
-			client: {
+			main_page: {
 				src: [
 					'<%= pkg.src.js %>/lib/*.js',
-					'<%= pkg.src.js %>/*.js'
+					'<%= pkg.src.js %>/main.js'
 				],
-				dest: '<%= pkg.dest.js %>/<%= pkg.name %>.min.js'
+				dest: '<%= pkg.dest.js %>/main.min.js'
+			},
+			interface_page: {
+				src: [
+					'<%= pkg.src.js %>/lib/*.js',
+					'<%= pkg.src.js %>/interface.js'
+				],
+				dest: '<%= pkg.dest.js %>/interface.min.js'
 			},
 			server: {
 				src: '<%= pkg.src.server %>/app.js',
@@ -50,7 +57,8 @@ module.exports = function (grunt) {
 					collapseWhitespace: true
 				},
 				files: {
-					'<%= pkg.dest.html %>/index.html': '<%= pkg.src.html %>/index.html'
+					'<%= pkg.dest.html %>/index.html': '<%= pkg.src.html %>/index.html',
+					'<%= pkg.dest.html %>/client.html': '<%= pkg.src.html %>/client.html'
 				}
 			}
 		},

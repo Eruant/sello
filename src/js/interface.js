@@ -15,7 +15,7 @@
 		if (len > 0) {
 			html += '<ul>';
 		}
-		for (i = 0; i < len; i++) {
+		for (i = 0; i < len; i += 1) {
 			html += '<li>' + users[i] + '</li>';
 		}
 		if (len > 0) {
@@ -23,5 +23,14 @@
 		}
 		$('#users').html(html);
 	});
+
+	$('#send').on('click', function () {
+		
+		var $username = $('username');
+		
+		socket.emit('user', { user: $username.val() });
+		$username.val('');
+	});
+
 
 }(jQuery, io));

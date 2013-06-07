@@ -32,7 +32,7 @@
 		if (len &gt; 0) {
 			html += '&lt;ul&gt;';
 		}
-		for (i = 0; i &lt; len; i++) {
+		for (i = 0; i &lt; len; i += 1) {
 			html += '&lt;li&gt;' + users[i] + '&lt;/li&gt;';
 		}
 		if (len &gt; 0) {
@@ -40,6 +40,15 @@
 		}
 		$('#users').html(html);
 	});
+
+	$('#send').on('click', function () {
+		
+		var $username = $('username');
+		
+		socket.emit('user', { user: $username.val() });
+		$username.val('');
+	});
+
 
 }(jQuery, io));
 </pre>
