@@ -42,8 +42,8 @@
 		$('#users').html(html);
 	});
 
-	$('#send_test').on('click', function () {
-		socket.emit('user', { user: 12345 });
+	$('#send').on('click', function () {
+		socket.emit('user', { user: $('#username').val() });
 	});
 
 
