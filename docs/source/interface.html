@@ -28,12 +28,14 @@
 			users = data.users,
 			len = data.users.length,
 			i;
+		
+		console.log('Users', users);
 
 		if (len &gt; 0) {
 			html += '&lt;ul&gt;';
 		}
 		for (i = 0; i &lt; len; i += 1) {
-			html += '&lt;li&gt;' + users[i] + '&lt;/li&gt;';
+			html += '&lt;li&gt;' + users[i].user + '(' + users[i].office + ')' + '&lt;/li&gt;';
 		}
 		if (len &gt; 0) {
 			html += '&lt;/ul&gt;';
@@ -46,7 +48,10 @@
 		var $username = $('#username'),
 			$office = $('#office');
 		
-		socket.emit('user', { user: $username.val() });
+		socket.emit('user', {
+			user: $username.val(),
+			office: $office.val()
+		});
 		$username.val('');
 	});
 
