@@ -99,15 +99,27 @@ function socketServer() {
 			if (data.user !== undefined) {
 
 				// search the arra for user and add them
-				/*var idx = db.users.indexOf(data.user); 
-				if (idx !== -1) {
-					db.users.splice(idx, 1);
-				} else {*/
+				var result = false,
+					len = db.users.length,
+					idx,
+					i;
+				
+				// loop through the data and see if this user is logged in
+				for (i = 0; i < len; i += 1) {
+					if (db.users[i].user === data.user) {
+						result = i;
+					}
+				}
+				
+				if (result) {
+					// remove user from array
+					console.log('--------------- REMOVING USER!!! ---------------');
+				} else {
 					db.users.push({
 						user: data.user,
 						office: data.office
 					});
-				//}
+				}
 
 				// alert all clients that there is a new user
 				io.sockets.emit('users', {
