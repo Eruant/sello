@@ -7,6 +7,22 @@
 
 	socket.on('users', function (data) {
 		console.log(data);
+
+		var html = '<h2>Users</h2>',
+			users = data.users,
+			len = data.users.length,
+			i;
+
+		if (len > 0) {
+			html += '<ul>';
+		}
+		for (i = 0; i < len; i++) {
+			html += '<li>' + users[i] + '</li>';
+		}
+		if (len > 0) {
+			html += '</ul>';
+		}
+		$('#users').html(html);
 	});
 
 	$('#send_test').on('click', function () {
