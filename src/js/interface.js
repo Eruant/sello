@@ -26,7 +26,7 @@
 
 	$('#send').on('click', function () {
 		
-		var $username = $('username');
+		var $username = $('#username');
 		
 		socket.emit('user', { user: $username.val() });
 		$username.val('');
