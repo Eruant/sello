@@ -99,13 +99,17 @@ function socketServer() {
 			if (data.user !== undefined) {
 
 				// search the arra for user and add them
-				db.users.push(data.user);
+				var idx = db.users.indexOf(data.user); 
+				if (idx !== -1) {
+					db.users.splice(idx, 1);
+				} else {
+					db.users.push(data.user);
+				}
 
+				// alert all clients that there is a new user
 				io.sockets.emit('users', {
 					users: db.users
 				});
-			} else {
-				console.log('Not logged', data);
 			}
 		});
 	});
