@@ -95,8 +95,11 @@ function socketServer() {
 		// wait for new users
 		socket.on('user', function (data) {
 			if (data.user !== undefined) {
+
+				// search the arra for user and add them
 				db.users.push(data.user);
-				socket.emit('users', {
+
+				io.sockets.emit('users', {
 					users: db.users
 				});
 			} else {
