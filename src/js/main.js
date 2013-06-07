@@ -16,7 +16,7 @@
 			html += '<ul>';
 		}
 		for (i = 0; i < len; i++) {
-			html += '<li>' + users[i] + '</li>';
+			html += '<li>' + users[i].user + '(' + users[i].office + ')' + '</li>';
 		}
 		if (len > 0) {
 			html += '</ul>';

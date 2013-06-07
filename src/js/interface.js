@@ -26,9 +26,13 @@
 
 	$('#send').on('click', function () {
 		
-		var $username = $('#username');
+		var $username = $('#username'),
+			$office = $('#office');
 		
-		socket.emit('user', { user: $username.val() });
+		socket.emit('user', {
+			user: $username.val(),
+			office: $office.val();
+		});
 		$username.val('');
 	});
 
