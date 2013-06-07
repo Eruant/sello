@@ -96,7 +96,7 @@ function socketServer() {
 		socket.on('user', function (data) {
 			if (data.user !== undefined) {
 				db.users.push(data.user);
-				socket.emit('db', {
+				socket.emit('users', {
 					users: db.users
 				});
 			} else {

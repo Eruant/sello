@@ -5,8 +5,8 @@
 
 	var socket = io.connect('http://sello.herokuapp.com');
 
-	socket.on('db', function (db) {
-		console.log(db);
+	socket.on('users', function (data) {
+		console.log(data);
 	});
 
 	$('#send_test').on('click', function () {
