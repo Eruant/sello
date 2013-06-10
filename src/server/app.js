@@ -76,10 +76,10 @@ function socketServer() {
 
 	var db = {
 		offices: [
-			{ name: "brighton", users: [] },
-			{ name: "london", users: [] },
-			{ name: "new-york", users: [] },
-			{ name: "san-francisco", users: [] }
+			{ name: "Brighton", users: [] },
+			{ name: "London", users: [] },
+			{ name: "New York", users: [] },
+			{ name: "San Francisco", users: [] }
 		]
 	};
 
@@ -105,11 +105,19 @@ function socketServer() {
 				
 				var offices = db.offices,
 					len = offices.length,
-					i;
+					i,
+					idx;
 				
 				for (i = 0; i < len; i += 1) {
 					if (offices[i].name === data.office) {
-						offices[i].users.push(data.user);
+						
+						idx = db.offices[i].users.indexOf(data.user);
+						
+						if (idx !== -1) {
+							db.offices[i].users.splice(idx, 1);
+						} else {
+							offices[i].users.push(data.user);
+						}
 					}
 				}
 				
