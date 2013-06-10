@@ -31,17 +31,15 @@
 			i,
 			j;
 		
-		console.log(data);
-		
-		for (i = 0; i &lt; offices_len; i++) {
+		for (i = 0; i &lt; offices_len; i += 1) {
 			
 			html += '&lt;div&gt;';
 			html += '&lt;h3&gt;' + offices[i].name + '&lt;/h3&gt;';
 			
-			users_len = offices[i].users;
+			users_len = offices[i].users.length;
 			
 			html += '&lt;ul&gt;';
-			for (j = 0; j &lt; users_len; j++) {
+			for (j = 0; j &lt; users_len; j += 1) {
 				html += '&lt;li&gt;' + offices[i].users[j] + '&lt;/li&gt;';
 			}
 			html += '&lt;/ul&gt;';

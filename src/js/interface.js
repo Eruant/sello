@@ -14,17 +14,15 @@
 			i,
 			j;
 		
-		console.log(data);
-		
-		for (i = 0; i < offices_len; i++) {
+		for (i = 0; i < offices_len; i += 1) {
 			
 			html += '<div>';
 			html += '<h3>' + offices[i].name + '</h3>';
 			
-			users_len = offices[i].users;
+			users_len = offices[i].users.length;
 			
 			html += '<ul>';
-			for (j = 0; j < users_len; j++) {
+			for (j = 0; j < users_len; j += 1) {
 				html += '<li>' + offices[i].users[j] + '</li>';
 			}
 			html += '</ul>';
