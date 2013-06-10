@@ -10,7 +10,6 @@
 
 	socket.on('msg', function (data) {
 		$('#users').html(template.render(data));
-		console.log(data);
 	});
 
 	$('#send').on('click', function () {

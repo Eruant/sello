@@ -102,7 +102,6 @@ function socketServer() {
 		// wait for new users
 		socket.on('user', function (data) {
 			
-			console.log('"user" emitted', data);
 			if (data.user !== undefined) {
 				
 				var offices = db.offices,
@@ -113,11 +112,8 @@ function socketServer() {
 				for (i = 0; i < len; i += 1) {
 					if (offices[i].name === data.office) {
 						
-						console.log('Seeing if a user already exists');
-						
+						// get the position of user in array (or -1)
 						idx = offices[i].users.indexOf(data.user);
-						
-						console.log('idx', idx);
 						
 						if (idx !== -1) {
 							console.log('Removing a user', data.user);
@@ -128,13 +124,6 @@ function socketServer() {
 						}
 					}
 				}
-				
-				/*var idx = db.users.indexOf(data.user); 
-				if (idx !== -1) {
-					db.users.splice(idx, 1);
-				} else {*/
-					//db.offices[data.office].push(data.user);
-				//}
 
 				// alert all clients that there is a new user
 				io.sockets.emit('msg', {
