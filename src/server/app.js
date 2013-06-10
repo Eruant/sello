@@ -101,6 +101,8 @@ function socketServer() {
 
 		// wait for new users
 		socket.on('user', function (data) {
+			
+			console.log('"user" emitted');
 			if (data.user !== undefined) {
 				
 				var offices = db.offices,
@@ -111,11 +113,17 @@ function socketServer() {
 				for (i = 0; i < len; i += 1) {
 					if (offices[i].name === data.office) {
 						
+						console.log('Seeing if a user already exists');
+						
 						idx = db.offices[i].users.indexOf(data.user);
 						
+						console.log('idx', idx);
+						
 						if (idx !== -1) {
+							console.log('Removing a user', data.user);
 							db.offices[i].users.splice(idx, 1);
 						} else {
+							console.log('Adding a user', data.user);
 							offices[i].users.push(data.user);
 						}
 					}
