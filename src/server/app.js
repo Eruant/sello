@@ -79,7 +79,7 @@ function socketServer() {
 			{ name: "brighton", label: "Brighton", users: [] },
 			{ name: "london", label: "London", users: [] },
 			{ name: "new-york", label: "New York", users: [] },
-			{ name: "san-Francisco", label: "San Francisco", users: [] }
+			{ name: "san-francisco", label: "San Francisco", users: [] }
 		]
 	};
 
