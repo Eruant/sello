@@ -78,8 +78,8 @@ function socketServer() {
 		offices: [
 			{ name: "Brighton", users: [] },
 			{ name: "London", users: [] },
-			{ name: "New York", users: [] },
-			{ name: "San Francisco", users: [] }
+			{ name: "New-York", users: [] },
+			{ name: "San-Francisco", users: [] }
 		]
 	};
 
@@ -102,7 +102,7 @@ function socketServer() {
 		// wait for new users
 		socket.on('user', function (data) {
 			
-			console.log('"user" emitted');
+			console.log('"user" emitted', data);
 			if (data.user !== undefined) {
 				
 				var offices = db.offices,
