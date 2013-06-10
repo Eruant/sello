@@ -121,10 +121,10 @@ function socketServer() {
 						
 						if (idx !== -1) {
 							console.log('Removing a user', data.user);
-							offices[i].users.splice(idx, 1);
+							db.offices[i].users.splice(idx, 1);
 						} else {
 							console.log('Adding a user', data.user);
-							offices[i].users.push(data.user);
+							db.offices[i].users.push(data.user);
 						}
 					}
 				}
