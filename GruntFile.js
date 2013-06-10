@@ -83,7 +83,7 @@ module.exports = function (grunt) {
 					'<%= pkg.src.js %>/**/*.js',
 					'<%= pkg.src.server %>/*.js'
 				],
-				tasks: ['jshint', 'uglify', 'jsduck']
+				tasks: ['jshint', 'uglify']
 			},
 			styles: {
 				files: [

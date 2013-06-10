@@ -1,1 +1,10 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Sello</title><link rel="stylesheet" href="css/sello.min.css"></head><body><h1>Sello</h1><div id="users"></div><div><label>User name</label><input type="text" id="username" value=""><br><lable>Office</lable><select id="office"><option value="brighton">Brighton</option><option value="london">London</option><option value="new-york">New York</option><option value="san-francisco">San Francisco</option></select><button id="send">Send</button></div><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script><script src="/socket.io/socket.io.js"></script><script src="js/interface.min.js"></script></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Sello</title><link rel="stylesheet" href="css/sello.min.css"></head><body><h1>Sello</h1><div id="users"></div><div><label>User name</label><input type="text" id="username" value=""><br><lable>Office</lable><select id="office"><option value="brighton">Brighton</option><option value="london">London</option><option value="new-york">New York</option><option value="san-francisco">San Francisco</option></select><button id="send">Send</button></div><script id="user_template" type="text/template">{% for office in offices %}
+				<div>
+					<h3>{{ office.name }}</h3>
+					<ul>
+						{% for user in office.users %}
+							<li>{{ user }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+			{% endfor %}</script><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script><script src="http://sello.herokuapp.com/socket.io/socket.io.js"></script><script src="js/interface.min.js"></script></body></html>

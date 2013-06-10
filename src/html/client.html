@@ -23,8 +23,21 @@
 			<button id="send">Send</button>
 		</div>
 		
+		<script id="user_template" type="text/template">
+			{% for office in offices %}
+				<div>
+					<h3>{{ office.name }}</h3>
+					<ul>
+						{% for user in office.users %}
+							<li>{{ user }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+			{% endfor %}
+		</script>
+		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-		<script src="/socket.io/socket.io.js"></script>
+		<script src="http://sello.herokuapp.com/socket.io/socket.io.js"></script>
 		<script src="js/interface.min.js"></script>
 	</body>
 </html>
