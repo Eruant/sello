@@ -115,13 +115,13 @@ function socketServer() {
 						
 						console.log('Seeing if a user already exists');
 						
-						idx = db.offices[i].users.indexOf(data.user);
+						idx = offices[i].users.indexOf(data.user);
 						
 						console.log('idx', idx);
 						
 						if (idx !== -1) {
 							console.log('Removing a user', data.user);
-							db.offices[i].users.splice(idx, 1);
+							offices[i].users.splice(idx, 1);
 						} else {
 							console.log('Adding a user', data.user);
 							offices[i].users.push(data.user);
