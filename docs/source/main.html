@@ -20,35 +20,13 @@
 (function ($, io) {
 	'use strict';
 
-	var socket = io.connect('http://sello.herokuapp.com');
+	var socket = io.connect('http://sello.herokuapp.com'),
+		template = twig({
+			data: $('#user_template').html()
+		});
 
 	socket.on('msg', function (data) {
-
-		var html = '&lt;h2&gt;Offices&lt;/h2&gt;',
-			offices = data.offices,
-			offices_len = data.offices.length,
-			users_len,
-			i,
-			j;
-		
-		for (i = 0; i &lt; offices_len; i += 1) {
-			
-			html += '&lt;div&gt;';
-			html += '&lt;h3&gt;' + offices[i].name + '&lt;/h3&gt;';
-			
-			users_len = offices[i].users.length;
-			
-			html += '&lt;ul&gt;';
-			for (j = 0; j &lt; users_len; j += 1) {
-				html += '&lt;li&gt;' + offices[i].users[j] + '&lt;/li&gt;';
-			}
-			html += '&lt;/ul&gt;';
-			
-			html += '&lt;/div&gt;';
-			
-		}
-
-		$('#users').html(html);
+		$('#users').html(template.render(data));
 	});
 
 }(jQuery, io));

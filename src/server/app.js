@@ -4,72 +4,47 @@
  * @author Matt Gale
  **/
 
-var app = require('http').createServer(staticServer),
+var port = process.env.PORT || 5000,
 	url = require('url'),
 	path = require('path'),
 	fs = require('fs'),
-	port = process.env.PORT || 5000,
-	io = require('socket.io').listen(app);
+	app = require('http').createServer(function (req, res) {
+		'use strict';
 
-function getExtension(filename) {
-	'use strict';
+		console.log('<<< starting static server >>>');
 	
-	var i = filename.lastIndexOf('.');
-	return (i < 0) ? '' : filename.substr(i);
-}
-
-function staticServer(req, res) {
-	'use strict';
-
-	console.log('<<< starting static server >>>');
-
-	var uri = 'bin/' + url.parse(req.url).pathname,
-		filename = path.join(process.cwd(), uri);
-
-	path.exists(filename, function (exists) {
-		if (!exists) {
-			res.writeHead(404, {
-				"Content-Type": "text/plain"
-			});
-			res.write("404 Not Found\n");
-			res.end();
-			return;
-		}
-
-		if (fs.statSync(filename).isDirectory()) {
-			filename += 'index.html';
-		}
-
-		fs.readFile(filename, 'binary', function (err, file) {
-			if (err) {
-				res.writeHead(500, { "Content-Type": "text/plain"});
-				res.write(err + "\n");
+		var uri = 'bin/' + url.parse(req.url).pathname,
+			filename = path.join(process.cwd(), uri);
+	
+		path.exists(filename, function (exists) {
+			if (!exists) {
+				res.writeHead(404, {
+					"Content-Type": "text/plain"
+				});
+				res.write("404 Not Found\n");
 				res.end();
 				return;
 			}
-
-			var ext = getExtension(filename);
-			switch (ext) {
-			case 'txt':
-				res.setHeader("Content-Type", "text/plain");
-				break;
-			case 'html':
-			case 'htm':
-				res.setHeader("Content-Type", "text/html");
-				break;
-			case 'js':
-				res.setHeader("Content-Type", "text/javascript");
-				break;
-			case 'css':
-				res.setHeader("Content-Type", "text/css");
-				break;
+	
+			if (fs.statSync(filename).isDirectory()) {
+				filename += 'index.html';
 			}
-			res.writeHead(200);
-			res.write(file, "binary");
-			res.end();
+	
+			fs.readFile(filename, 'binary', function (err, file) {
+				if (err) {
+					res.writeHead(500, { "Content-Type": "text/plain"});
+					res.write(err + "\n");
+					res.end();
+					return;
+				}
+
+				res.writeHead(200);
+				res.write(file, "binary");
+				res.end();
+			});
 		});
-	});
-}
+	}),
+	io = require('socket.io').listen(app);
 
 function socketServer() {
 	'use strict';
