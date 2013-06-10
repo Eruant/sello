@@ -76,10 +76,10 @@ function socketServer() {
 
 	var db = {
 		offices: [
-			{ name: "Brighton", users: [] },
-			{ name: "London", users: [] },
-			{ name: "New-York", users: [] },
-			{ name: "San-Francisco", users: [] }
+			{ name: "brighton", label: "Brighton", users: [] },
+			{ name: "london", label: "London", users: [] },
+			{ name: "new-york", label: "New York", users: [] },
+			{ name: "san-Francisco", label: "San Francisco", users: [] }
 		]
 	};
 

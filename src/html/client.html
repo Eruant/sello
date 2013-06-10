@@ -26,7 +26,7 @@
 		<script id="user_template" type="text/template">
 			{% for office in offices %}
 				<div>
-					<h3>{{ office.name }}</h3>
+					<h3>{{ office.label }}</h3>
 					<ul>
 						{% for user in office.users %}
 							<li>{{ user }}</li>
