@@ -26,6 +26,8 @@ window.raf = (function () {
 			{ name: "san-francisco", label: "San Francisco", users: [], position: { x: 410, y: 310 } }
 		]
 	};
+	
+	app.deg = Math.PI / 180;
 			
 	app.init = function (id, width, height) {
 				
@@ -74,22 +76,58 @@ window.raf = (function () {
 			
 	app.draw = function () {
 		
-		var offices = app.db.offices || {},
-			len = offices.length,
+		var ctx = app.ctx,
+			offices = app.db.offices || {},
+			office_len = offices.length,
+			users_len,
 			i,
+			j,
 			office,
-			ctx = app.ctx;
+			user;
 		
-		if (len > 0) {
+		if (office_len > 0) {
 		
-			for (i = 0; i < len; i += 1) {
+			for (i = 0; i < office_len; i += 1) {
 				
 				office = offices[i];
 				
 				ctx.save();
 				ctx.translate(office.position.x, office.position.y);
+				
+				// draw background
 				ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
-				ctx.fillRect(0, 0, 380, 280);
+				ctx.fillRect(0, 0, 390, 290);
+				
+				// add label
+				ctx.font = "normal 14px Arial";
+				ctx.fillStyle = '#fff';
+				ctx.textBaseline = 'top';
+				ctx.textAlign = 'left';
+				ctx.fillText(office.label, 10, 10);
+				
+				// draw characters
+				users_len = office.users.length;
+				
+				ctx.save();
+				ctx.translate(20, 230);
+				
+				for (j = 0; j < users_len; j += 1) {
+					user = office.users[j];
+					
+					ctx.fillStyle = '#fff';
+					ctx.fillRect(0, 0, 20, 40);
+					
+					ctx.save();
+					ctx.translate(10, -15);
+					ctx.rotate(-45 * app.deg);
+					ctx.fillText(user, 0, 0);
+					ctx.restore();
+					
+					ctx.translate(40, 0);
+					
+				}
+				ctx.restore();
+				
 				ctx.restore();
 			}
 		}
@@ -98,7 +136,6 @@ window.raf = (function () {
 	app.init('main-canvas', 800, 600);
 
 	socket.on('msg', function (data) {
-		window.console.log(data);
 		app.db = data;
 	});
 
