@@ -51,10 +51,10 @@ function socketServer() {
 
 	var db = {
 		offices: [
-			{ name: "brighton", label: "Brighton", users: [] },
-			{ name: "london", label: "London", users: [] },
-			{ name: "new-york", label: "New York", users: [] },
-			{ name: "san-francisco", label: "San Francisco", users: [] }
+			{ name: "brighton", label: "Brighton", users: [], position: { x: 0, y: 0 } },
+			{ name: "london", label: "London", users: [], position: { x: 400, y: 0 } },
+			{ name: "new-york", label: "New York", users: [], position: { x: 0, y: 300 } },
+			{ name: "san-francisco", label: "San Francisco", users: [], position: { x: 400, y: 300 } }
 		]
 	};
 
