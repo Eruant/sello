@@ -92,7 +92,7 @@ window.raf = (function () {
 				office = offices[i];
 				
 				ctx.save();
-				ctx.translate(office.position.x, office.position.y);
+				ctx.translate(office.position.x, office.position.y); // move to office position
 				
 				// draw background
 				ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
@@ -109,26 +109,29 @@ window.raf = (function () {
 				users_len = office.users.length;
 				
 				ctx.save();
-				ctx.translate(20, 230);
+				ctx.translate(20, 230); // move to bottom to start drawing characters
 				
 				for (j = 0; j < users_len; j += 1) {
 					user = office.users[j];
 					
+					// draw this users
 					ctx.fillStyle = '#fff';
 					ctx.fillRect(0, 0, 20, 40);
 					
+					// add the label
 					ctx.save();
 					ctx.translate(10, -15);
 					ctx.rotate(-45 * app.deg);
 					ctx.fillText(user, 0, 0);
 					ctx.restore();
 					
+					// move the brush for the next users
 					ctx.translate(40, 0);
 					
 				}
-				ctx.restore();
+				ctx.restore(); // move brush back to office origin
 				
-				ctx.restore();
+				ctx.restore(); // move brush back to origin
 			}
 		}
 	};
