@@ -21,9 +21,9 @@ window.raf = (function () {
 	app.db = {
 		offices: [
 			{ name: "brighton", label: "Brighton", users: [], position: { x: 0, y: 0 } },
-			{ name: "london", label: "London", users: [], position: { x: 400, y: 0 } },
-			{ name: "new-york", label: "New York", users: [], position: { x: 0, y: 300 } },
-			{ name: "san-francisco", label: "San Francisco", users: [], position: { x: 400, y: 300 } }
+			{ name: "london", label: "London", users: [], position: { x: 410, y: 0 } },
+			{ name: "new-york", label: "New York", users: [], position: { x: 0, y: 310 } },
+			{ name: "san-francisco", label: "San Francisco", users: [], position: { x: 410, y: 310 } }
 		]
 	};
 			
@@ -87,7 +87,7 @@ window.raf = (function () {
 				office = offices[i];
 				
 				ctx.save();
-				ctx.transform(office.position.x, office.position.y);
+				ctx.translate(office.position.x, office.position.y);
 				ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
 				ctx.fillRect(0, 0, 380, 280);
 				ctx.restore();
